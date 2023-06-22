@@ -1,28 +1,64 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
-
-router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+router.get('/', async (req, res) => {
+  try {
+    const categories = await Category.findAll({
+      include: [Product],
+    });
+    res.json(categories);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('An error occurred while trying to get the categories');
+  }
 });
 
-router.get('/:id', (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
+router.get('/:id', async (req, res) => {
+  try {
+    const category = await Category.findByPk(req.params.id, {
+      include: [Product],
+    });
+    res.json(category);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('An error occurred while trying to get the category');
+  }
 });
 
-router.post('/', (req, res) => {
-  // create a new category
+router.put('/', async(req, res) => {
+  try {
+    const newCategory = await Category.create(req.body);
+    res.json(newCategory);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('An error occurred while trying to create the category');
+  }
 });
 
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+router.post('/:id', async(req, res) => {
+  try {
+    const updatedCategory = await Category.create(req.body, {
+    where: { category_id: req.params.id },
+  });
+  res.json(updatedCategory);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('An error occurred while trying to create the category');
+  }  
 });
 
-router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+;
+
+router.delete('/:id', async(req, res) => {
+  try {
+    const deletedCategory = await Category.destroy({
+    where: { category_id: req.params.id },
+  });
+  res.json(deletedCategory);
+  } catch (error) {
+    console.error(err);
+    res.status(500).send('An error occurred while trying to delete the category');
+  }
 });
 
 module.exports = router;
