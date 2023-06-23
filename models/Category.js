@@ -25,4 +25,6 @@ Category.init(
   }
 );
 
+Category.has
+
 module.exports = Category;
