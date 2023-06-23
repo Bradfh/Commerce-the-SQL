@@ -9,7 +9,7 @@ router.get('/', async(req, res) => {
     });
     res.json(products);
   } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).send('An error occurred while trying to get the products');
   }
 });
@@ -22,7 +22,7 @@ router.get('/:id', async(req, res) => {
     });
     res.json(product);
   } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).send('An error occurred while trying to get the product');
   }
 });
@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
     })
     .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
-      console.log(err);
+      console.log(error);
       res.status(400).json(err);
     });
 });
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
-      id: req.params.id,
+      product_id: req.params.id,
     },
   })
     .then((product) => {
@@ -86,23 +86,23 @@ router.put('/:id', (req, res) => {
       ]);
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
-    .catch((err) => {
+    .catch((error) => {
       // console.log(err);
-      res.status(400).json(err);
+      res.status(400).json(error);
     });
 });
 
 router.delete('/:id', async(req, res) => {
   try {
     const deletedProduct = await Product.destroy({
-    where: { id: req.params.id },
+    where: { product_id: req.params.id },
   });
   if (!deletedProduct) {
     res.status(404).json({ message: 'No product found with this id!' });
   }
-  res.json("Product deleted successfully:", deletedProduct);
+  res.json({message: "Product deleted successfully:", deletedProduct});
   } catch (error) {
-    console.error(err);
+    console.error(error);
     res.status(500).send('An error occurred while trying to delete the product');
   }
 });

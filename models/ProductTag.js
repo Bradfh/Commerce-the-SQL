@@ -6,7 +6,7 @@ class ProductTag extends Model {}
 
 ProductTag.init(
   {
-    product_tag_id: {
+    _id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -15,16 +15,16 @@ ProductTag.init(
     product_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Product',
-        key: 'Product_id',
+        model: 'product',
+        key: 'product_id',
         onDelete: 'CASCADE',
       },
     },
     tag_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Tag',
-        key: 'Tag_id',
+        model: 'tag',
+        key: 'tag_id',
         onDelete: 'CASCADE',
       },
     },
