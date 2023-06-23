@@ -53,7 +53,7 @@ The following API endpoints are available:
 
 ## Video Walkthrough
 
-https://youtu.be/VHnAwdAearI
+[![Demo Video](https://img.youtube.com/vi/VHnAwdAearI/0.jpg)](https://www.youtube.com/watch?v=VHnAwdAearI)
 
 ## Contributing
 
