@@ -51,6 +51,8 @@ The following API endpoints are available:
 - `PUT /tags/:id`: Update an existing tag by ID.
 - `DELETE /tags/:id`: Delete a tag by ID.
 
+## Video Walkthrough
+
 ## Contributing
 
 Contributions to this project are welcome. If you find any issues or would like to suggest improvements, please submit a pull request or open an issue.
